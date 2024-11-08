@@ -1,0 +1,54 @@
+
+function Book(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+}
+
+Book.prototype.printBook = function() {
+    console.log(this.title, this.author, this.pages, this.isRead);
+}
+
+Book.prototype.addBook = function() {
+    const bookDiv = document.createElement('div');
+    document.body.appendChild(bookDiv);
+
+    let elementsArr = [
+        createElem("h1",this.title),
+        createElem("p",this.author),
+        createElem("p",this.pages),
+        createElem("p",this.isRead)
+    ]
+    elementsArr.forEach(element => {
+        console.log("llegue")
+        bookDiv.appendChild(element);
+    });
+}
+
+function createElem(tag,content){
+    const element = document.createElement(tag);
+    element.innerText = content;
+    return element;
+}
+
+
+
+
+
+document.querySelector('#addBook').addEventListener('click', function(e){
+    e.preventDefault(); 
+
+    const bookTitle = document.querySelector("#bookTitle").value;
+    const bookAuthor = document.querySelector("#bookAuthor").value;
+    const bookPages = document.querySelector("#bookPages").value;
+    
+    let isBookRead = "No";
+    if(document.querySelector("#bookIsReadYes").checked) {
+        isBookRead = document.querySelector("#bookIsReadYes").value;
+    }
+
+    const newBook = new Book(bookTitle, bookAuthor, bookPages, isBookRead);
+    newBook.printBook();
+    newBook.addBook();
+});
