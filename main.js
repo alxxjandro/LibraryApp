@@ -1,4 +1,6 @@
 
+const bookContainer = document.querySelector("#containerBooks");
+
 function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
@@ -12,11 +14,13 @@ Book.prototype.printBook = function() {
 
 Book.prototype.addBook = function() {
     const bookDiv = document.createElement('div');
-    document.body.appendChild(bookDiv);
+    bookDiv.classList.add("bookContainer")
+    bookContainer.appendChild(bookDiv);
+    document.body.appendChild(bookContainer);
 
     let elementsArr = [
         createElem("h1",this.title),
-        createElem("p",this.author),
+        createElem("h2",this.author),
         createElem("p",this.pages),
         createElem("p",this.isRead)
     ]
@@ -31,8 +35,6 @@ function createElem(tag,content){
     element.innerText = content;
     return element;
 }
-
-
 
 
 
