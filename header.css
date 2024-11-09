@@ -1,17 +1,30 @@
 .header {
     background-color: var(--primary-color);
-    height: var(--header-height);
+    min-height: var(--header-height);
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000; 
 
+    border: solid 1px red;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 10px 0;
 }
 
-.header:first{
-    border: solid 1px red;
+.header > h1{
+    border: solid 1px blue;
+    text-align: end;
+}
+
+.header > div {
+    border: solid 1px blue;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
 }
 

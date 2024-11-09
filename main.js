@@ -24,11 +24,12 @@ Book.prototype.printBook = function() {
 }
 
 Book.prototype.addBook = function() {
-    let amountOfBooks; 
-    cleanForm();
     
-    if (this.title && this.author && this.pages && this.isRead !== ''){
-
+    if (this.title && this.author && this.pages !== ''){
+        cleanForm();
+        bookMenu.classList.add('hidden');
+        bookMenu.classList.remove('pageContent')
+        
         const bookDiv = document.createElement('div');
         bookDiv.classList.add("bookContainer")
         bookContainer.appendChild(bookDiv);
@@ -57,7 +58,7 @@ Book.prototype.addBook = function() {
         this.index = bookLibrary.indexOf(this);
         bookDiv.dataset.index = this.index;
   
-        bookMenu.classList.toggle('hidden');
+        bookMenu.classList.add('hidden');
 
     } else{
         alert("Please make sure all the fields are correctly filled :)")
@@ -75,6 +76,9 @@ Book.prototype.deleteBook = function() {
     if (this.index >= 0 ){
         bookLibrary.splice(this.index,1);
     }
+    if (bookLibrary.length === 0) {
+        starterText.classList.remove('hidden');
+    }
 }
 
 
@@ -82,6 +86,8 @@ Book.prototype.deleteBook = function() {
 //submit book button
 document.querySelector('#submitBook').addEventListener('click', function(e){
     e.preventDefault(); //avoid going to another page when submitting a book
+
+    console.log("SUBMIT")
 
     const bookTitle = document.querySelector("#bookTitle").value;
     const bookAuthor = document.querySelector("#bookAuthor").value;
@@ -93,7 +99,7 @@ document.querySelector('#submitBook').addEventListener('click', function(e){
     }
 
     const newBook = new Book(bookTitle, bookAuthor, bookPages, isBookRead);
-    newBook.printBook();
+   //newBook.printBook();
     newBook.addBook();
 });
 
@@ -117,15 +123,22 @@ function cleanForm(){
 addFirstBook.addEventListener('click',() =>{
     bookMenu.classList.toggle('hidden');
     starterText.classList.add('hidden');
+    bookMenu.classList.add('pageContent')
 })
 
 closeBookMenu.addEventListener('click', () =>{
     cleanForm()
-    bookMenu.classList.toggle('hidden');
-    starterText.classList.remove('hidden');
+    console.log("close menu")
+    bookMenu.classList.remove('pageContent')
+    bookMenu.classList.add('hidden');
+    if (bookLibrary.length == 0){
+        starterText.classList.remove('hidden');
+    } 
+    
 })
 
 headerAddBook.addEventListener('click', () =>{
+    bookMenu.classList.add('pageContent')
     bookMenu.classList.remove('hidden');
     starterText.classList.add('hidden');
 })
