@@ -11,11 +11,12 @@ const bookLibrary = [];
 
 
 //book constructor and methods
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, isRead, index) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.index = index;
 }
 
 Book.prototype.printBook = function() {
@@ -23,8 +24,10 @@ Book.prototype.printBook = function() {
 }
 
 Book.prototype.addBook = function() {
+    let amountOfBooks; 
 
     if (this.title && this.author && this.pages && this.isRead !== ''){
+
         const bookDiv = document.createElement('div');
         bookDiv.classList.add("bookContainer")
         bookContainer.appendChild(bookDiv);
@@ -34,14 +37,25 @@ Book.prototype.addBook = function() {
             createElem("h1",this.title),
             createElem("h2",this.author),
             createElem("p",this.pages),
-            createElem("p",this.isRead)
+            createElem("p",this.isRead),
+            createElem("button",'X')
         ]
+
+        const currentBook = this;
+        elementsArr[4].addEventListener('click',()=>{
+            currentBook.deleteBook();
+        })
+
         elementsArr.forEach(element => {
-            console.log("llegue")
             bookDiv.appendChild(element);
         });
 
         bookLibrary.push(this);
+
+        //add the index to a data set and to the book itself
+        this.index = bookLibrary.indexOf(this);
+        bookDiv.dataset.index = this.index;
+  
         bookMenu.classList.toggle('hidden');
 
     } else{
@@ -49,6 +63,20 @@ Book.prototype.addBook = function() {
     }
 
 }
+
+Book.prototype.deleteBook = function() {
+
+    const divToDelete = document.querySelector(`[data-index="${this.index}"]`);
+    console.log(`[data-index="${this.index}"]`);
+
+    divToDelete.remove();
+
+    if (this.index >= 0 ){
+        bookLibrary.splice(this.index,1);
+    }
+}
+
+
 
 //submit book button
 document.querySelector('#submitBook').addEventListener('click', function(e){
@@ -92,4 +120,3 @@ headerAddBook.addEventListener('click', () =>{
     bookMenu.classList.remove('hidden');
     starterText.classList.add('hidden');
 })
-
