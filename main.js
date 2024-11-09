@@ -13,21 +13,27 @@ Book.prototype.printBook = function() {
 }
 
 Book.prototype.addBook = function() {
-    const bookDiv = document.createElement('div');
-    bookDiv.classList.add("bookContainer")
-    bookContainer.appendChild(bookDiv);
-    document.body.appendChild(bookContainer);
 
-    let elementsArr = [
-        createElem("h1",this.title),
-        createElem("h2",this.author),
-        createElem("p",this.pages),
-        createElem("p",this.isRead)
-    ]
-    elementsArr.forEach(element => {
-        console.log("llegue")
-        bookDiv.appendChild(element);
-    });
+    if (this.title && this.author && this.pages && this.isRead !== ''){
+        const bookDiv = document.createElement('div');
+        bookDiv.classList.add("bookContainer")
+        bookContainer.appendChild(bookDiv);
+        document.body.appendChild(bookContainer);
+    
+        let elementsArr = [
+            createElem("h1",this.title),
+            createElem("h2",this.author),
+            createElem("p",this.pages),
+            createElem("p",this.isRead)
+        ]
+        elementsArr.forEach(element => {
+            console.log("llegue")
+            bookDiv.appendChild(element);
+        });
+    } else{
+        alert("Please make sure all the fields are correctly filled :)")
+    }
+
 }
 
 function createElem(tag,content){
@@ -35,8 +41,6 @@ function createElem(tag,content){
     element.innerText = content;
     return element;
 }
-
-
 
 document.querySelector('#addBook').addEventListener('click', function(e){
     e.preventDefault(); 

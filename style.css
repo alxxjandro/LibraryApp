@@ -1,3 +1,7 @@
 .bookContainer{
     border: solid 1px red;
 }
+
+.bookContent{
+    border: solid 1px blue;
+}
