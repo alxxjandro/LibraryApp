@@ -25,7 +25,8 @@ Book.prototype.printBook = function() {
 
 Book.prototype.addBook = function() {
     let amountOfBooks; 
-
+    cleanForm();
+    
     if (this.title && this.author && this.pages && this.isRead !== ''){
 
         const bookDiv = document.createElement('div');
@@ -103,6 +104,13 @@ function createElem(tag,content){
     return element;
 }
 
+function cleanForm(){
+    let list = bookMenu.querySelectorAll('input');
+    list.forEach(function(item){
+        item.value = '';
+    })
+}
+
 // ~ ~ ~ 
 
 //if the user doesn't have any books, display an special message
@@ -112,6 +120,7 @@ addFirstBook.addEventListener('click',() =>{
 })
 
 closeBookMenu.addEventListener('click', () =>{
+    cleanForm()
     bookMenu.classList.toggle('hidden');
     starterText.classList.remove('hidden');
 })
