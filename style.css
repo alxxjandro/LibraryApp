@@ -1,7 +1,20 @@
-.bookContainer{
-    border: solid 1px red;
+:root {
+    --header-height: 80px;
+    --background-color: #c9ced6;
+    --primary-color: #7dd3fc;
+    --text-color: #ffffff;
 }
 
-.bookContent{
-    border: solid 1px blue;
+body{   
+    background-color: var(--background-color);
+    padding-top: var(--header-height);
+    box-sizing: border-box;
+    border: 0px;
+    margin: 0px;
 }
+
+.hidden{
+    display: none;
+}
+
+

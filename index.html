@@ -6,30 +6,41 @@
     <title>Document</title>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
 </head>
 <body>
-
-    <form>
-        <label for="bookTitle">Book Title</label>
-        <input type="text" id="bookTitle" name="newBookTitle">
-
-        <label for="bookAuthor">Author</label>
-        <input type="text" id="bookAuthor" name="newBookAuthor">
-
-        <label for="bookPages">Number of pages</label>
-        <input type="number" id="bookPages" name="newBookPages" min="0" max="999">
-
-        <label>Have you read the book?</label>
-        <div>
-            <input type="radio" id="bookIsReadYes" value="Yes" name="newBookIsRead"/>
-            <label for="bookIsReadYes">Yes</label>
-    
-            <input type="radio" id="bookIsReadNo" value="No" name="newBookIsRead"/>
-            <label for="bookIsReadNo">No</label>
-        </div>
-        <button id="addBook">Add book</button>
-    </form>
-    <div class="bookContent" id="containerBooks"></div>
+    <div class="header">
+        <h1>Welcome to Odin's Library!</h1>
+        <button id="headerAddBook">Add book</button>
+    </div>
+    <div id="starterText" class="gettingStarted">
+        <h2>To get started, add your first book!</h2>
+        <button class="firstTimeBook" id="gettingStartedButton">Add book</button>
+    </div>
+    <div id="bookMenu" class="pageContent hidden">
+        <form>
+            <label for="bookTitle">Book Title</label>
+            <input type="text" id="bookTitle" name="newBookTitle">
+            
+            <label for="bookAuthor">Author</label>
+            <input type="text" id="bookAuthor" name="newBookAuthor">
+            
+            <label for="bookPages">Number of pages</label>
+            <input type="number" id="bookPages" name="newBookPages" min="0" max="999">
+            
+            <label>Have you read the book?</label>
+            <div>
+                <input type="radio" id="bookIsReadYes" value="Yes" name="newBookIsRead"/>
+                <label for="bookIsReadYes">Yes</label>
+                
+                <input type="radio" id="bookIsReadNo" value="No" name="newBookIsRead"/>
+                <label for="bookIsReadNo">No</label>
+            </div>
+            <button id="submitBook">Submit book</button>
+        </form>
+        <button id="closeBookMenu">X</button>
+        <div class="bookContent" id="containerBooks"></div>
+    </div>
 
 </body>
 </html>
