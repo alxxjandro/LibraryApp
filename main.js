@@ -95,7 +95,7 @@ document.querySelector('#submitBook').addEventListener('click', function(e){
     
     let isBookRead = "No";
     if(document.querySelector("#bookIsReadYes").checked) {
-        isBookRead = document.querySelector("#bookIsReadYes").value;
+        isBookRead = "value";
     }
 
     const newBook = new Book(bookTitle, bookAuthor, bookPages, isBookRead);

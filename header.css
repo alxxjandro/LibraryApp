@@ -7,7 +7,7 @@
     left: 0;
     z-index: 1000; 
 
-    border: solid 1px red;
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -17,12 +17,12 @@
 }
 
 .header > h1{
-    border: solid 1px blue;
+
     text-align: end;
 }
 
 .header > div {
-    border: solid 1px blue;
+
     min-width: 200px;
     display: flex;
     justify-content: center;

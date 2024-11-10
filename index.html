@@ -7,6 +7,7 @@
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="bookMenu.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Welcome to Odin's Library!</h1>
+        <h1>Odin's Library</h1>
         <div><button class="button" id="headerAddBook">Add book</button></div>
     </div>
     <div id="starterText" class="gettingStarted">
@@ -22,7 +23,7 @@
         <button class="firstTimeBook button" id="gettingStartedButton">Add book</button>
     </div>
     <div id="bookMenu" class="hidden">
-        <button class="button" id="closeBookMenu">X</button>
+        <div class="closeButtonDiv"><button class="button" id="closeBookMenu">X</button></div>
         <div>
             <form>
                 <div>
@@ -56,8 +57,8 @@
                 <button id="submitBook" class="button">Submit book</button>
             </form>
         </div>
-        <div class="bookContent" id="containerBooks"></div>
     </div>
+    <div class="bookContent" id="containerBooks"></div>
 
 </body>
 </html>

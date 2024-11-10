@@ -1,0 +1,137 @@
+
+
+/* 'X' Button */
+.closeButtonDiv{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-right: 2rem;
+    padding-top: 1rem;
+}
+.pageContent > div > button{
+    border-radius: 100px;
+    width: 20px;
+    height: 30px;
+    font-size: .8rem;
+    color: white;
+    background-color: rgb(255, 64, 64);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Submit book button */
+form{
+    display: flex;
+    flex-direction: column;
+}
+form > button {
+    align-self: center;
+    height: 2.6rem;
+}
+
+/* Book Menu */
+#bookMenu{
+    min-width: 300px;
+    min-height: 450px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+.closeButtonDiv + div{
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pageContent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* The form itself */
+#bookMenu > div > form{
+    padding-bottom: 1.5rem;
+    flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Each div's label and input' */
+#bookMenu > div > form > div{
+    display: flex;
+    flex-direction: column;
+    
+    padding: 1rem;
+    width: 70%;
+}
+
+/* Radio button options */
+.form-radio-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-top: .7rem;
+    padding-bottom: 1.2rem;
+}
+
+.form-radio-buttons > div{
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+
+input[type="radio"]{
+    appearance: none;
+    cursor: pointer;
+    border-color: var(--background-color);
+
+    width: 20px;
+	height: 20px;
+	border: 2px solid #555555;
+	border-radius: 50%;
+	background-clip: content-box;
+	padding: 3px;
+}
+
+input[type="radio"]:checked {
+    border: solid 2px var(--button-color);
+    background-color: var(--button-color);
+}
+
+
+/* form input */
+input {
+    border: none;
+    background-color: rgb(255, 255, 255);
+    height: 1.4rem;
+    border-radius: 5px;
+    margin-top: .4rem;
+    padding: .2rem .5rem;
+    font-size: 1rem;
+    border: solid rgb(227, 225, 225) 2px;
+
+    -webkit-box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.07);
+    box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.07);
+    transition: .1s border ease-in;
+}
+
+input:hover{
+    border: solid #58cc71 2px;
+}
+
+label{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
