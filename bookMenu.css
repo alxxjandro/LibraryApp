@@ -1,5 +1,3 @@
-
-
 /* 'X' Button */
 .closeButtonDiv{
     width: 100%;
@@ -56,6 +54,7 @@ form > button {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    z-index: 100;
 }
 
 /* The form itself */
@@ -134,4 +133,16 @@ input:hover{
 label{
     font-size: 1.1rem;
     font-weight: 500;
+}
+
+::placeholder{
+    opacity: .4;
+}
+
+.bookContent{
+    transition: filter 0.2s ease;
+}
+
+.blur{
+    filter: blur(6px);
 }

@@ -74,10 +74,13 @@ Book.prototype.deleteBook = function() {
     divToDelete.remove();
 
     if (this.index >= 0 ){
+        console.log(bookLibrary, '  Size:',bookLibrary.length)
         bookLibrary.splice(this.index,1);
+        console.log(bookLibrary, '  Size:',bookLibrary.length)
     }
     if (bookLibrary.length === 0) {
         starterText.classList.remove('hidden');
+        starterText.classList.add('gettingStarted');
     }
 }
 
@@ -86,8 +89,7 @@ Book.prototype.deleteBook = function() {
 //submit book button
 document.querySelector('#submitBook').addEventListener('click', function(e){
     e.preventDefault(); //avoid going to another page when submitting a book
-
-    console.log("SUBMIT")
+    bookContainer.classList.remove('blur');
 
     const bookTitle = document.querySelector("#bookTitle").value;
     const bookAuthor = document.querySelector("#bookAuthor").value;
@@ -95,7 +97,7 @@ document.querySelector('#submitBook').addEventListener('click', function(e){
     
     let isBookRead = "No";
     if(document.querySelector("#bookIsReadYes").checked) {
-        isBookRead = "value";
+        isBookRead = "Yes";
     }
 
     const newBook = new Book(bookTitle, bookAuthor, bookPages, isBookRead);
@@ -122,23 +124,31 @@ function cleanForm(){
 //if the user doesn't have any books, display an special message
 addFirstBook.addEventListener('click',() =>{
     bookMenu.classList.toggle('hidden');
+    bookContainer.classList.add('blur');
     starterText.classList.add('hidden');
+    starterText.classList.remove('gettingStarted');
     bookMenu.classList.add('pageContent')
 })
 
 closeBookMenu.addEventListener('click', () =>{
     cleanForm()
+
     console.log("close menu")
+
     bookMenu.classList.remove('pageContent')
+    bookContainer.classList.remove('blur');
     bookMenu.classList.add('hidden');
     if (bookLibrary.length == 0){
         starterText.classList.remove('hidden');
+        starterText.classList.add('gettingStarted');
     } 
     
 })
 
 headerAddBook.addEventListener('click', () =>{
+    bookContainer.classList.add('blur');
     bookMenu.classList.add('pageContent')
     bookMenu.classList.remove('hidden');
     starterText.classList.add('hidden');
+    starterText.classList.remove('gettingStarted');
 })
