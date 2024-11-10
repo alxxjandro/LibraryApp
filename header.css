@@ -17,12 +17,11 @@
 }
 
 .header > h1{
-
     text-align: end;
+    cursor: pointer;
 }
 
 .header > div {
-
     min-width: 200px;
     display: flex;
     justify-content: center;

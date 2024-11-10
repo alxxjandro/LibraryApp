@@ -5,3 +5,68 @@
     justify-content: center;
     height: calc(80vh - var(--header-height));
 }
+
+.bookContent{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 1rem;
+}
+
+.bookContent > div > h1{
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+
+    display: flex;
+    justify-content: center;
+
+    max-width: 220px;
+    word-break: break-word;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.bookContent > div > p{
+    font-size: 1.1rem;
+    max-width: 220px;
+    word-break: break-word;
+
+    padding-bottom: 6px;
+}
+
+.bookContainer{
+    justify-self: center;
+    min-width: 220px;
+    border-radius: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1rem .5rem;
+
+    background-color: #ededed;
+    border: solid 3px #d2d2d2;
+
+    transition: translate .3s ease, border .2s ease;
+
+    -webkit-box-shadow: 10px 10px 28px -10px rgba(0,0,0,0.21);
+    -moz-box-shadow: 10px 10px 28px -10px rgba(0,0,0,0.21);
+    box-shadow: 10px 10px 28px -10px rgba(0,0,0,0.21);
+}
+
+.bookContainer:hover{
+    translate: 0px -10px;
+    border: solid 4px var(--button-color);
+}
+
+/* delete button */
+.bookContainer > button {
+    background-color: rgb(255, 64, 64);
+    color: white;
+    margin-top: 1.6rem;
+    margin-bottom: 2rem;
+}

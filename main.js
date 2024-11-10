@@ -37,13 +37,14 @@ Book.prototype.addBook = function() {
     
         let elementsArr = [
             createElem("h1",this.title),
-            createElem("h2",this.author),
+            createElem("p",this.author),
             createElem("p",this.pages),
             createElem("p",this.isRead),
-            createElem("button",'X')
+            createElem("button",'Delete book')
         ]
 
         const currentBook = this;
+        elementsArr[4].classList.add('button')
         elementsArr[4].addEventListener('click',()=>{
             currentBook.deleteBook();
         })
@@ -84,8 +85,6 @@ Book.prototype.deleteBook = function() {
     }
 }
 
-
-
 //submit book button
 document.querySelector('#submitBook').addEventListener('click', function(e){
     e.preventDefault(); //avoid going to another page when submitting a book
@@ -95,9 +94,9 @@ document.querySelector('#submitBook').addEventListener('click', function(e){
     const bookAuthor = document.querySelector("#bookAuthor").value;
     const bookPages = document.querySelector("#bookPages").value;
     
-    let isBookRead = "No";
+    let isBookRead = "In progress";
     if(document.querySelector("#bookIsReadYes").checked) {
-        isBookRead = "Yes";
+        isBookRead = "Read";
     }
 
     const newBook = new Book(bookTitle, bookAuthor, bookPages, isBookRead);
