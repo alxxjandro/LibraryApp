@@ -9,83 +9,156 @@ const headerAddBook = document.querySelector("#headerAddBook");
 
 const bookLibrary = [];
 
+class book{
+    constructor(title,author,pages,isRead,index){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        this.index = index;
+    }
 
-//book constructor and methods
-function Book(title, author, pages, isRead, index) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.index = index;
-}
+    printBook(){
+        console.log(this.title, this.author, this.pages, this.isRead);
+    }
 
-Book.prototype.printBook = function() {
-    console.log(this.title, this.author, this.pages, this.isRead);
-}
-
-Book.prototype.addBook = function() {
-    
-    if (this.title && this.author && this.pages !== ''){
-        cleanForm();
-        bookMenu.classList.add('hidden');
-        bookMenu.classList.remove('pageContent')
+    addBook(){
+        if (this.title && this.author && this.pages !== ''){
+            cleanForm();
+            bookMenu.classList.add('hidden');
+            bookMenu.classList.remove('pageContent')
+            
+            const bookDiv = document.createElement('div');
+            bookDiv.classList.add("bookContainer")
+            bookContainer.appendChild(bookDiv);
+            document.body.appendChild(bookContainer);
         
-        const bookDiv = document.createElement('div');
-        bookDiv.classList.add("bookContainer")
-        bookContainer.appendChild(bookDiv);
-        document.body.appendChild(bookContainer);
+            let elementsArr = [
+                createElem("h1",this.title),
+                createElem("p",this.author),
+                createElem("p",this.pages),
+                createElem("p",this.isRead),
+                createElem("button",'Delete book')
+            ]
     
-        let elementsArr = [
-            createElem("h1",this.title),
-            createElem("p",this.author),
-            createElem("p",this.pages),
-            createElem("p",this.isRead),
-            createElem("button",'Delete book')
-        ]
+            const currentBook = this;
+            elementsArr[4].classList.add('button')
+            elementsArr[4].addEventListener('click',()=>{
+                currentBook.deleteBook();
+            })
+    
+            elementsArr.forEach(element => {
+                bookDiv.appendChild(element);
+            });
+    
+            bookLibrary.push(this);
+    
+            //add the index to a data set and to the book itself
+            this.index = bookLibrary.indexOf(this);
+            bookDiv.dataset.index = this.index;
+      
+            bookMenu.classList.add('hidden');
+    
+        } else{
+            alert("Please make sure all the fields are correctly filled :)")
+        }
+    }
 
-        const currentBook = this;
-        elementsArr[4].classList.add('button')
-        elementsArr[4].addEventListener('click',()=>{
-            currentBook.deleteBook();
-        })
+    deleteBook(){
+        const divToDelete = document.querySelector(`[data-index="${this.index}"]`);
+        console.log(`[data-index="${this.index}"]`);
 
-        elementsArr.forEach(element => {
-            bookDiv.appendChild(element);
-        });
+        divToDelete.remove();
 
-        bookLibrary.push(this);
+        if (this.index >= 0 ){
+            console.log(bookLibrary, '  Size:',bookLibrary.length)
+            bookLibrary.splice(this.index,1);
+            console.log(bookLibrary, '  Size:',bookLibrary.length)
+        }
+        if (bookLibrary.length === 0) {
+            starterText.classList.remove('hidden');
+            starterText.classList.add('gettingStarted');
+        }
+    }
+}
 
-        //add the index to a data set and to the book itself
-        this.index = bookLibrary.indexOf(this);
-        bookDiv.dataset.index = this.index;
+// //book constructor and methods
+// function Book(title, author, pages, isRead, index) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.isRead = isRead;
+//     this.index = index;
+// }
+
+// Book.prototype.printBook = function() {
+//     console.log(this.title, this.author, this.pages, this.isRead);
+// }
+
+// Book.prototype.addBook = function() {
+    
+//     if (this.title && this.author && this.pages !== ''){
+//         cleanForm();
+//         bookMenu.classList.add('hidden');
+//         bookMenu.classList.remove('pageContent')
+        
+//         const bookDiv = document.createElement('div');
+//         bookDiv.classList.add("bookContainer")
+//         bookContainer.appendChild(bookDiv);
+//         document.body.appendChild(bookContainer);
+    
+//         let elementsArr = [
+//             createElem("h1",this.title),
+//             createElem("p",this.author),
+//             createElem("p",this.pages),
+//             createElem("p",this.isRead),
+//             createElem("button",'Delete book')
+//         ]
+
+//         const currentBook = this;
+//         elementsArr[4].classList.add('button')
+//         elementsArr[4].addEventListener('click',()=>{
+//             currentBook.deleteBook();
+//         })
+
+//         elementsArr.forEach(element => {
+//             bookDiv.appendChild(element);
+//         });
+
+//         bookLibrary.push(this);
+
+//         //add the index to a data set and to the book itself
+//         this.index = bookLibrary.indexOf(this);
+//         bookDiv.dataset.index = this.index;
   
-        bookMenu.classList.add('hidden');
+//         bookMenu.classList.add('hidden');
 
-    } else{
-        alert("Please make sure all the fields are correctly filled :)")
-    }
+//     } else{
+//         alert("Please make sure all the fields are correctly filled :)")
+//     }
 
-}
+// }
 
-Book.prototype.deleteBook = function() {
+// Book.prototype.deleteBook = function() {
 
-    const divToDelete = document.querySelector(`[data-index="${this.index}"]`);
-    console.log(`[data-index="${this.index}"]`);
+//     const divToDelete = document.querySelector(`[data-index="${this.index}"]`);
+//     console.log(`[data-index="${this.index}"]`);
 
-    divToDelete.remove();
+//     divToDelete.remove();
 
-    if (this.index >= 0 ){
-        console.log(bookLibrary, '  Size:',bookLibrary.length)
-        bookLibrary.splice(this.index,1);
-        console.log(bookLibrary, '  Size:',bookLibrary.length)
-    }
-    if (bookLibrary.length === 0) {
-        starterText.classList.remove('hidden');
-        starterText.classList.add('gettingStarted');
-    }
-}
+//     if (this.index >= 0 ){
+//         console.log(bookLibrary, '  Size:',bookLibrary.length)
+//         bookLibrary.splice(this.index,1);
+//         console.log(bookLibrary, '  Size:',bookLibrary.length)
+//     }
+//     if (bookLibrary.length === 0) {
+//         starterText.classList.remove('hidden');
+//         starterText.classList.add('gettingStarted');
+//     }
+// }
 
 //submit book button
+
 document.querySelector('#submitBook').addEventListener('click', function(e){
     e.preventDefault(); //avoid going to another page when submitting a book
     bookContainer.classList.remove('blur');
@@ -99,7 +172,7 @@ document.querySelector('#submitBook').addEventListener('click', function(e){
         isBookRead = "Read";
     }
 
-    const newBook = new Book(bookTitle, bookAuthor, bookPages, isBookRead);
+    const newBook = new book(bookTitle, bookAuthor, bookPages, isBookRead);
    //newBook.printBook();
     newBook.addBook();
 });
